@@ -1,6 +1,8 @@
-"""Build model.js: P(x|D), P(x|not D), P(x) per factor from pooled BRFSS 2020+2022. Run: python3 -I build.py"""
+"""Build model.js: P(x|D), P(x|not D), P(x) per factor from pooled BRFSS 2020+2022. Run from anywhere: python3 -I tools/build.py"""
 import csv, json, re, collections
-A, B = 'data/heart_2020_cleaned.csv', 'data/heart_2022_with_nans.csv'
+from pathlib import Path
+ROOT = Path(__file__).resolve().parent.parent   # repo root, so it works from any cwd
+A, B = ROOT / 'data/heart_2020_cleaned.csv', ROOT / 'data/heart_2022_with_nans.csv'
 yn = lambda v: {'Yes': 'y', 'No': 'n'}.get(v)
 def age(v):
     m = re.search(r'\d+', v or ''); n = int(m.group()) if m else None
@@ -74,7 +76,40 @@ SUG = [('ตอนสั่งเครื่องดื่ม (ชา กา�
 out['q'].append({'k': 'sugar', 'assumed': True, 'name': 'การกินหวาน', 't': 'การกินหวาน (เฉลี่ย 3 ข้อ)',
     'steps': [{'k': f'sugar{n}', 't': t, 'o': [{'v': str(v), 'l': l} for v, l in enumerate(ls)]} for n, (t, ls) in enumerate(SUG)],
     'o': [{'v': str(v), 'l': l, 'pD': pD, 'pN': pN} for v, l, pD, pN in zip(range(5), ['ไม่หวาน','หวานน้อย','ปานกลาง','หวาน','หวานมาก'], [.06,.12,.22,.30,.30], [.12,.20,.30,.22,.16])]})
+
+# English copy: te/ne = question text/short name, o = labels aligned with the DISPLAYED options (ui if present, else o)
+EN = {
+ 'age': ('How old are you?', 'Age', ['18–29', '30–44', '45–54', '55–64', '65 or older']),
+ 'sex': ('Sex at birth', 'Sex', ['Female', 'Male']),
+ 'bmi': ('Body mass index (BMI)', 'BMI', ['Under 18.5 · Underweight', '18.5–24.9 · Healthy', '25–29.9 · Overweight', '30–34.9 · Obese', '35 or above · Severely obese']),
+ 'sleep': ('How many hours do you usually sleep per day?', 'Sleep', ['Under 5 hrs', '5 hrs', '6 hrs', '7–8 hrs', '9 hrs or more']),
+ 'smoke': ('What is your smoking history?', 'Smoking', ['Never smoked', 'Tried a little (under 100 cigarettes in my life)', 'Used to smoke regularly, but quit', 'Smoke some days', 'Smoke every day']),
+ 'alc': ('How would you describe your alcohol drinking?', 'Alcohol', ['Never drink', 'Occasionally, on special occasions', '1–2 days a week', 'Almost every day, a little each time', 'Heavy, regular drinking (several drinks at a time)']),
+ 'act': ('How often do you move or exercise these days? (besides work)', 'Exercise', ['Hardly at all', 'Occasionally (a few times a month)', '1–2 days a week', '3–4 days a week', 'Almost every day']),
+ 'phys': ('In the past 30 days, how many days did your body feel unwell (sick, hurt, achy)?', 'Unwell days (per month)', ['None', '1–3 days', '4–7 days', '8–14 days', '15 days or more']),
+ 'ment': ('In the past 30 days, how many days did you feel stressed, down or in a bad mood?', 'Stressed / low-mood days (per month)', ['None', '1–3 days', '4–7 days', '8–14 days', '15 days or more']),
+ 'walk': ('How is it when you walk far or climb several flights of stairs?', 'Walking / stairs', ['Very easy', 'A bit tiring but fine', 'Quite hard, need frequent rests', 'Very hard, need help or a device']),
+ 'heart': ('', 'Heart disease', []), 'stroke': ('', 'Stroke', []), 'kidney': ('', 'Kidney disease', []), 'asthma': ('', 'Asthma', []), 'skin': ('', 'Skin cancer', []),
+}
+EN_SUGAR = ('Sugar intake (average of 3 questions)', 'Sugar intake', ['Not sweet', 'Light', 'Medium', 'Sweet', 'Very sweet'], [
+ ('When ordering a drink (tea, coffee, milk, milk tea), how sweet do you usually order it?', ['Not sweet at all', 'Less sweet (25%)', 'Half sweet (50%)', 'Regular sweet (100%)', 'Extra sweet / added syrup']),
+ ('How often do you drink sweet drinks (soda, iced tea, boxed juice)?', ['Hardly ever', 'A few times a month', '1–3 days a week', 'Almost every day', 'Several a day']),
+ ('How often do you eat desserts, snacks or bakery?', ['Hardly ever', 'A few times a month', '1–3 days a week', 'Almost every day', 'Several times a day'])])
+for q in out['q']:
+    if q['k'] == 'sugar':
+        q['te'], q['ne'], eo, est = EN_SUGAR
+        for o, e in zip(q['o'], eo): o['e'] = e
+        for st, (t, es) in zip(q['steps'], est):
+            st['te'] = t
+            assert len(es) == len(st['o'])
+            for o, e in zip(st['o'], es): o['e'] = e
+        continue
+    q['te'], q['ne'], eo = EN[q['k']]
+    shown = q.get('ui') or q['o']
+    if q.get('grp'): continue
+    assert len(eo) == len(shown), q['k']
+    for o, e in zip(shown, eo): o['e'] = e
 out['n'] = sum(tot)
-open('model.js', 'w').write('const MODEL=' + json.dumps(out, ensure_ascii=False, separators=(',', ':')) + ';')
+open(ROOT / 'model.js', 'w').write('const MODEL=' + json.dumps(out, ensure_ascii=False, separators=(',', ':')) + ';')
 print(tot, out['prevalence'])
 for q in out['q']: print(q['k'], [(o['v'], round(o['pD'], 3), round(o['pN'], 3)) for o in q['o']])
