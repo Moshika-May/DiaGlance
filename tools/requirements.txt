@@ -1,0 +1,3 @@
+# The data pipeline, the model builder and the quiz need NOTHING from PyPI (Python standard library only, Python 3.10+; developed on 3.14).
+# The only optional package is Pillow, used by cutout.py to turn AI-generated cat pictures into transparent images.
+Pillow>=10

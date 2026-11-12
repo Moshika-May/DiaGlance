@@ -1,0 +1,5 @@
+﻿column,th,en,unit,unit_en,decimals,note
+share_age_60plus_pct,ผู้อายุ 60 ปีขึ้นไป,Residents aged 60+,%,%,1,share of residents aged 60 or older (HDC)
+density_per_km2,ความหนาแน่นประชากร,Population density,คน/ตร.กม.,people/km²,0,NSO registry
+internet_households_pct,ครัวเรือนที่เชื่อมต่ออินเทอร์เน็ต,Households with internet,%,%,0,NSO
+household_income_baht_month,รายได้ครัวเรือนต่อเดือน,Household income per month,บาท,THB,0,NSO socio-economic survey

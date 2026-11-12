@@ -1,0 +1,78 @@
+﻿province_code,th,en,region,coastal,neighbours
+10,กรุงเทพมหานคร,Bangkok,central,1,11 12 13 24 73 74
+11,สมุทรปราการ,Samut Prakan,central,1,10 24
+12,นนทบุรี,Nonthaburi,central,0,10 13 14 73
+13,ปทุมธานี,Pathum Thani,central,0,10 12 14 24 26
+14,พระนครศรีอยุธยา,Phra Nakhon Si Ayutthaya,central,0,12 13 15 16 19 26 72
+15,อ่างทอง,Ang Thong,central,0,14 16 17 72
+16,ลพบุรี,Lop Buri,central,0,14 15 17 18 19 30 36 60 67
+17,สิงห์บุรี,Sing Buri,central,0,15 16 18 72
+18,ชัยนาท,Chai Nat,central,0,16 17 60 61 72
+19,สระบุรี,Saraburi,central,0,14 16 26 30
+20,ชลบุรี,Chon Buri,east,1,21 24
+21,ระยอง,Rayong,east,1,20 22
+22,จันทบุรี,Chanthaburi,east,1,21 23 27
+23,ตราด,Trat,east,1,22
+24,ฉะเชิงเทรา,Chachoengsao,east,1,10 11 13 20 25 26 27
+25,ปราจีนบุรี,Prachin Buri,east,0,24 26 27 30
+26,นครนายก,Nakhon Nayok,central,0,13 14 19 24 25 30
+27,สระแก้ว,Sa Kaeo,east,0,22 24 25 30 31
+30,นครราชสีมา,Nakhon Ratchasima,northeast,0,16 19 25 26 27 31 36 40
+31,บุรีรัมย์,Buri Ram,northeast,0,27 30 32 36 44
+32,สุรินทร์,Surin,northeast,0,31 33 44 45
+33,ศรีสะเกษ,Si Sa Ket,northeast,0,32 34 35 45
+34,อุบลราชธานี,Ubon Ratchathani,northeast,0,33 35 37
+35,ยโสธร,Yasothon,northeast,0,33 34 37 45 49
+36,ชัยภูมิ,Chaiyaphum,northeast,0,16 30 31 40 67
+37,อำนาจเจริญ,Amnat Charoen,northeast,0,34 35 49
+38,บึงกาฬ,Bueng Kan,northeast,0,43 47
+39,หนองบัวลำภู,Nong Bua Lam Phu,northeast,0,40 41 42
+40,ขอนแก่น,Khon Kaen,northeast,0,30 36 39 41 42 44 46 67
+41,อุดรธานี,Udon Thani,northeast,0,39 40 42 43 46 47
+42,เลย,Loei,northeast,0,39 40 41 43 65 67
+43,หนองคาย,Nong Khai,northeast,0,38 41 42
+44,มหาสารคาม,Maha Sarakham,northeast,0,31 32 40 45 46
+45,ร้อยเอ็ด,Roi Et,northeast,0,32 33 35 44 46
+46,กาฬสินธุ์,Kalasin,northeast,0,40 41 44 45 47 49
+47,สกลนคร,Sakon Nakhon,northeast,0,38 41 46 48 49
+48,นครพนม,Nakhon Phanom,northeast,0,47 49
+49,มุกดาหาร,Mukdahan,northeast,0,35 37 46 47 48
+50,เชียงใหม่,Chiang Mai,north,0,51 52 57 58 63
+51,ลำพูน,Lamphun,north,0,50 52 63
+52,ลำปาง,Lampang,north,0,50 51 54 56 63 64
+53,อุตรดิตถ์,Uttaradit,north,0,54 55 64 65
+54,แพร่,Phrae,north,0,52 53 55 56 64
+55,น่าน,Nan,north,0,53 54 56
+56,พะเยา,Phayao,north,0,52 54 55 57
+57,เชียงราย,Chiang Rai,north,0,50 56
+58,แม่ฮ่องสอน,Mae Hong Son,north,0,50 63
+60,นครสวรรค์,Nakhon Sawan,central,0,16 18 61 62 66 67
+61,อุทัยธานี,Uthai Thani,central,0,18 60 62 63 71 72
+62,กำแพงเพชร,Kamphaeng Phet,central,0,60 61 63 64 66
+63,ตาก,Tak,west,0,50 51 52 58 61 62 64 71
+64,สุโขทัย,Sukhothai,central,0,52 53 54 62 63 65 66
+65,พิษณุโลก,Phitsanulok,central,0,42 53 64 66 67
+66,พิจิตร,Phichit,central,0,60 62 64 65 67
+67,เพชรบูรณ์,Phetchabun,central,0,16 36 40 42 60 65 66
+70,ราชบุรี,Ratchaburi,west,0,71 73 75 76
+71,กาญจนบุรี,Kanchanaburi,west,0,61 63 70 72 73
+72,สุพรรณบุรี,Suphan Buri,central,0,14 15 17 18 61 71 73
+73,นครปฐม,Nakhon Pathom,central,0,10 12 70 71 72 74
+74,สมุทรสาคร,Samut Sakhon,central,1,10 73 75
+75,สมุทรสงคราม,Samut Songkhram,central,1,70 74
+76,เพชรบุรี,Phetchaburi,west,1,70 77
+77,ประจวบคีรีขันธ์,Prachuap Khiri Khan,west,1,76 86
+80,นครศรีธรรมราช,Nakhon Si Thammarat,south,1,81 84 92 93
+81,กระบี่,Krabi,south,1,80 82 84 92
+82,พังงา,Phang Nga,south,1,81 83 84 85
+83,ภูเก็ต,Phuket,south,1,82
+84,สุราษฎร์ธานี,Surat Thani,south,1,80 81 82 85 86
+85,ระนอง,Ranong,south,1,82 84 86
+86,ชุมพร,Chumphon,south,1,77 84 85
+90,สงขลา,Songkhla,south,1,91 93 94 95
+91,สตูล,Satun,south,1,90 92 93
+92,ตรัง,Trang,south,1,80 81 91 93
+93,พัทลุง,Phatthalung,south,0,80 90 91 92
+94,ปัตตานี,Pattani,south,1,90 95 96
+95,ยะลา,Yala,south,0,90 94 96
+96,นราธิวาส,Narathiwat,south,1,94 95
